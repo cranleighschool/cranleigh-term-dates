@@ -1,0 +1,16 @@
+{
+    "name": "fredbradley/cranleigh-term-dates",
+    "description": "A small Wordpress Plugin for storing and displaying Term Dates on the Cranleigh School Websites",
+    "authors": [
+        {
+            "name": "Fred Bradley",
+            "email": "hello@fredbradley.co.uk"
+        }
+    ],
+    "require": {},
+  "autoload": {
+	"psr-4": {
+	  "CranleighSchool\\TermDates\\": "src"
+	}
+  }
+}
