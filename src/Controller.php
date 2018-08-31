@@ -69,6 +69,9 @@ abstract class Controller {
 		$years = [];
 
 		foreach ( $asYear as $year ) {
+			if ($year[ 0 ]->year < $this->currentAcademicYear) {
+				continue;
+			}
 
 			if ($this->isActiveYear($year)===false) {
 				continue;
