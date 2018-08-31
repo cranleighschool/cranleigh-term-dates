@@ -18,8 +18,8 @@ abstract class Controller {
 
 	public function __construct() {
 
-		$this->setYears( 2017 );
 		$this->setCurrentAcademicYear();
+		$this->setYears( $this->currentAcademicYear );
 		$this->sanitizeYears();
 	}
 
