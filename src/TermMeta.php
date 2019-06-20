@@ -8,7 +8,6 @@
 
 namespace CranleighSchool\TermDates;
 
-
 class TermMeta {
 
 	public $title;
@@ -16,8 +15,8 @@ class TermMeta {
 
 	public function __construct( array $each, string $term_key, string $meta_prefix ) {
 
-		$this->title = $each[ $meta_prefix . $term_key . "_title" ];
-		$this->value = $each[ $meta_prefix . $term_key . "_value" ];
+		$this->title = $each[ $meta_prefix . $term_key . '_title' ];
+		$this->value = $each[ $meta_prefix . $term_key . '_value' ];
 
 	}
 }

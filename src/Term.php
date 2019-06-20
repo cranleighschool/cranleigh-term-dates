@@ -26,14 +26,14 @@ class Term {
 
 	private function getSanitizedYear() {
 
-		$int = str_replace( "-", "", filter_var( $this->term_key, FILTER_SANITIZE_NUMBER_INT ) );
+		$int = str_replace( '-', '', filter_var( $this->term_key, FILTER_SANITIZE_NUMBER_INT ) );
 
 		return (int) $int;
 	}
 
 	private function getSanitizedTitle() {
 
-		$title = str_replace( "-", " ", $this->term_key );
+		$title = str_replace( '-', ' ', $this->term_key );
 
 		return ucwords( $title );
 	}

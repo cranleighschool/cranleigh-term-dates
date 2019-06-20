@@ -8,11 +8,10 @@
 
 namespace CranleighSchool\TermDates;
 
-
 abstract class Controller {
 
-	public static $meta_prefix = "term_date_";
-	public $years = [];
+	public static $meta_prefix = 'term_date_';
+	public $years              = [];
 	public $currentAcademicYear;
 
 
@@ -25,7 +24,7 @@ abstract class Controller {
 
 	public function setYears( int $from ) {
 
-		$this->years = range( $from, date( "Y" ) + 1 );
+		$this->years = range( $from, date( 'Y' ) + 1 );
 	}
 
 	public function setCurrentAcademicYear() {
@@ -50,17 +49,17 @@ abstract class Controller {
 
 	public function tidy_meta() {
 
-		if (!get_the_ID()) {
+		if ( ! get_the_ID() ) {
 			return false;
 		}
 
-		$all  = get_post_meta( get_the_ID() );
+		$all = get_post_meta( get_the_ID() );
 
 		$preg = preg_filter( '/^' . self::$meta_prefix . '(.*)/', '$1', array_keys( $all ) );
 		$meta = [];
 
 		foreach ( $preg as $term ) {
-			$obj = new Term( $term );
+			$obj    = new Term( $term );
 			$meta[] = $obj;
 		}
 
@@ -69,15 +68,15 @@ abstract class Controller {
 		$years = [];
 
 		foreach ( $asYear as $year ) {
-			if ($year[ 0 ]->year < $this->currentAcademicYear) {
+			if ( $year[0]->year < $this->currentAcademicYear ) {
 				continue;
 			}
 
-			if ($this->isActiveYear($year)===false) {
+			if ( $this->isActiveYear( $year ) === false ) {
 				continue;
 			}
 
-			$years[ $year[ 0 ]->year ] = $year;
+			$years[ $year[0]->year ] = $year;
 
 		}
 
@@ -85,8 +84,8 @@ abstract class Controller {
 
 	}
 
-	private function isActiveYear($year) {
-		if (empty($year[0]->meta) && empty($year[1]->meta) && empty($year[2]->meta)) {
+	private function isActiveYear( $year ) {
+		if ( empty( $year[0]->meta ) && empty( $year[1]->meta ) && empty( $year[2]->meta ) ) {
 			return false;
 		} else {
 			return true;

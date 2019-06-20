@@ -8,7 +8,6 @@
 
 namespace CranleighSchool\TermDates;
 
-
 class Admin extends Controller {
 
 	public function __construct() {
@@ -26,8 +25,8 @@ class Admin extends Controller {
 	public function move_metabox() {
 
 		global $post, $wp_meta_boxes;
-		do_meta_boxes( get_current_screen(), "term-dates-meta", $post );
-		unset( $wp_meta_boxes[ get_post_type( $post ) ][ 'term-dates-meta' ] );
+		do_meta_boxes( get_current_screen(), 'term-dates-meta', $post );
+		unset( $wp_meta_boxes[ get_post_type( $post ) ]['term-dates-meta'] );
 	}
 
 	function metabox( array $meta_boxes ) {
@@ -37,13 +36,13 @@ class Admin extends Controller {
 		}
 
 		$meta_boxes[] = [
-			"title"      => "Term Dates",
-			"id"         => "term-dates",
-			"priority"   => "high",
-			"context"    => "term-dates-meta",
-			"post_types" => 'page',
-			"autosave"   => true,
-			"fields"     => $this->setupTerms()
+			'title'      => 'Term Dates',
+			'id'         => 'term-dates',
+			'priority'   => 'high',
+			'context'    => 'term-dates-meta',
+			'post_types' => 'page',
+			'autosave'   => true,
+			'fields'     => $this->setupTerms(),
 		];
 
 		return $meta_boxes;
@@ -64,12 +63,12 @@ class Admin extends Controller {
 
 		// Check for post IDs
 		$checked_post_IDs = [];
-		array_push( $checked_post_IDs, get_page_by_path( "information/term-dates" )->ID );
+		array_push( $checked_post_IDs, get_page_by_path( 'information/term-dates' )->ID );
 
-		if ( isset( $_GET[ 'post' ] ) ) {
-			$post_id = intval( $_GET[ 'post' ] );
-		} elseif ( isset( $_POST[ 'post_ID' ] ) ) {
-			$post_id = intval( $_POST[ 'post_ID' ] );
+		if ( isset( $_GET['post'] ) ) {
+			$post_id = intval( $_GET['post'] );
+		} elseif ( isset( $_POST['post_ID'] ) ) {
+			$post_id = intval( $_POST['post_ID'] );
 		} else {
 			$post_id = false;
 		}
@@ -88,8 +87,8 @@ class Admin extends Controller {
 
 		$fields = [];
 
-		foreach ( $this->years as $year ):
-			foreach ( $this->termsinYear( $year ) as $term ):
+		foreach ( $this->years as $year ) :
+			foreach ( $this->termsinYear( $year ) as $term ) :
 				array_push( $fields, $this->setupTerm( $term ) );
 			endforeach;
 		endforeach;
@@ -103,36 +102,36 @@ class Admin extends Controller {
 		$next_year = $this_year + 1;
 
 		return [
-			"Michaelmas Term (" . $this_year . ")",
-			"Lent Term (" . $next_year . ")",
-			"Summer Term (" . $next_year . ")"
+			'Michaelmas Term (' . $this_year . ')',
+			'Lent Term (' . $next_year . ')',
+			'Summer Term (' . $next_year . ')',
 		];
 
 	}
 
 	function setupTerm( string $name ) {
 
-		$id = strtolower( str_replace( " ", "-", $name ) );
+		$id = strtolower( str_replace( ' ', '-', $name ) );
 
 		return [
-			"name"       => __( $name, "cranleigh-2016" ),
-			"id"         => self::$meta_prefix . $id,
-			"type"       => "group",
-			"clone"      => true,
-			"sort_clone" => true,
-			"desc"       => "The rows in the table for " . $name,
-			"fields"     => [
+			'name'       => __( $name, 'cranleigh-2016' ),
+			'id'         => self::$meta_prefix . $id,
+			'type'       => 'group',
+			'clone'      => true,
+			'sort_clone' => true,
+			'desc'       => 'The rows in the table for ' . $name,
+			'fields'     => [
 				[
-					"name" => "Title",
-					"id"   => self::$meta_prefix . $id . "_title",
-					"type" => "text",
+					'name' => 'Title',
+					'id'   => self::$meta_prefix . $id . '_title',
+					'type' => 'text',
 				],
 				[
-					"name" => "Value",
-					"id"   => self::$meta_prefix . $id . "_value",
-					"type" => "text"
-				]
-			]
+					'name' => 'Value',
+					'id'   => self::$meta_prefix . $id . '_value',
+					'type' => 'text',
+				],
+			],
 		];
 	}
 

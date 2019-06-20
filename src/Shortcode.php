@@ -8,7 +8,6 @@
 
 namespace CranleighSchool\TermDates;
 
-
 class Shortcode extends Controller {
 
 	public function __construct() {
@@ -34,7 +33,7 @@ class Shortcode extends Controller {
 			echo '<li class="' . $this->checkActiveTab( $yearGroup ) . '">';
 			echo '<a href="#' . $yearGroup . '" data-toggle="tab">' . $yearGroup . '&ndash;' . ( $yearGroup + 1 ) . '</a>';
 			echo '</li>';
-			echo "";
+			echo '';
 		}
 		echo "\n";
 		echo '</ul>';
@@ -43,10 +42,10 @@ class Shortcode extends Controller {
 
 		foreach ( $meta as $yearGroup => $year ) {
 			echo '<div class="tab-pane ' . $this->checkActiveTab( $yearGroup ) . '" id="' . $yearGroup . '">';
-			echo "<h2>Academic Year " . $yearGroup . "-" . ( $yearGroup + 1 ) . "</h2>";
+			echo '<h2>Academic Year ' . $yearGroup . '-' . ( $yearGroup + 1 ) . '</h2>';
 
 			foreach ( $year as $term ) {
-				echo "<h3>" . $term->title . "</h3>";
+				echo '<h3>' . $term->title . '</h3>';
 				if ( empty( $term->meta ) ) {
 					echo '<p class="text-danger">Apologies, no detail has yet been added.</p>';
 				} else {
@@ -56,10 +55,10 @@ class Shortcode extends Controller {
 						<tbody>
 						<?php
 						foreach ( $term->meta as $meta ) {
-							echo "<tr>";
-							echo "<td><strong>" . $meta->title . "</strong></td>";
-							echo "<td>" . $meta->value . "</td>";
-							echo "</tr>";
+							echo '<tr>';
+							echo '<td><strong>' . $meta->title . '</strong></td>';
+							echo '<td>' . $meta->value . '</td>';
+							echo '</tr>';
 						}
 						?>
 						</tbody>
@@ -82,7 +81,7 @@ class Shortcode extends Controller {
 	private function checkActiveTab( int $yearGroup ) {
 
 		if ( $yearGroup == $this->currentAcademicYear ) {
-			$class = "active";
+			$class = 'active';
 		} else {
 			$class = null;
 		}
