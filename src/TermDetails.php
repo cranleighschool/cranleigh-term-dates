@@ -8,20 +8,47 @@
 
 namespace CranleighSchool\TermDates;
 
+/**
+ * Class TermDetails
+ *
+ * @package CranleighSchool\TermDates
+ */
 class TermDetails {
 
+	/**
+	 * @var array
+	 */
 	protected $return = [];
+	/**
+	 * @var array
+	 */
 	protected $termMeta;
+	/**
+	 * @var string
+	 */
 	protected $termKey;
+	/**
+	 * @var string
+	 */
 	protected $metaPrefix;
 
-	public function __construct( array $term_meta, string $term_key, string $meta_prefix ) {
+	/**
+	 * TermDetails constructor.
+	 *
+	 * @param array  $term_meta
+	 * @param string $term_key
+	 * @param string $meta_prefix
+	 */
+	public function __construct(array $term_meta, string $term_key, string $meta_prefix ) {
 
 		$this->termMeta   = $term_meta;
 		$this->termKey    = $term_key;
 		$this->metaPrefix = $meta_prefix;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getCollection() {
 
 		foreach ( $this->termMeta as $each_meta ) {

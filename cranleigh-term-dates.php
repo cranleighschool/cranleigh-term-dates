@@ -16,4 +16,3 @@ require_once 'vendor/autoload.php';
 $admin     = new Admin();
 $shortcode = new Shortcode();
 
-

@@ -8,14 +8,36 @@
 
 namespace CranleighSchool\TermDates;
 
+/**
+ * Class Term
+ *
+ * @package CranleighSchool\TermDates
+ */
 class Term {
 
+	/**
+	 * @var int
+	 */
 	public $year;
+	/**
+	 * @var string
+	 */
 	public $title;
+	/**
+	 * @var array
+	 */
 	public $meta = [];
+	/**
+	 * @var string
+	 */
 	public $term_key;
 
-	public function __construct( string $term ) {
+	/**
+	 * Term constructor.
+	 *
+	 * @param string $term
+	 */
+	public function __construct(string $term ) {
 
 		$this->term_key    = $term;
 		$this->meta_prefix = Admin::getMetaPrefix();
@@ -24,6 +46,9 @@ class Term {
 		$this->meta        = $this->get_post_meta();
 	}
 
+	/**
+	 * @return int
+	 */
 	private function getSanitizedYear() {
 
 		$int = str_replace( '-', '', filter_var( $this->term_key, FILTER_SANITIZE_NUMBER_INT ) );
@@ -31,6 +56,9 @@ class Term {
 		return (int) $int;
 	}
 
+	/**
+	 * @return string
+	 */
 	private function getSanitizedTitle() {
 
 		$title = str_replace( '-', ' ', $this->term_key );
@@ -38,6 +66,9 @@ class Term {
 		return ucwords( $title );
 	}
 
+	/**
+	 * @return array
+	 */
 	private function get_post_meta() {
 
 		$term_meta = get_post_meta( get_the_ID(), $this->meta_prefix . $this->term_key, true );
